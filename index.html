@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>CS 184 Final Project - Mesh Regularization</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+
+<h1 align="middle">CS 184 Computer Graphics and Imaging, Spring 2022</h1>
+<h1 align="middle">Final Project: Anisotropic Mesh Regularization</h1>
+<h1 align="middle">Milestone Status Report</h1>
+
+<h2 align="middle">Somya Mohindra</h2>
+<h2 align="middle">Anuj Shah</h2>
+<h2 align="middle">Abhishek Mahesh</h2>
+<h2 align="middle">Melody Sifry</h2>
+
+<br><br>
+
+<div>
+<h2 align="left">Revised Project Proposal</h2>
+
+<p>Revised Project Proposal: We have decided to change our project to focus on mesh regularization to improve mesh quality for further use. In project 2, we used Edge Flip, split, collapse, and loop subdivision to explore local meshing operators. We hope to extend this project to do mesh regularization of anisotropic meshes. </p>
+
+
+<h2 align="left">What We Have Accomplished</h2>
+<p>In the past week we have familiarized ourselves with Google’s MediaPipe (<a href="https://google.github.io/mediapipe/solutions/face_mesh#python-solution-api">https://google.github.io/mediapipe/solutions/face_mesh#python-solution-api</a>) and MeshLab (<a href="meshlab.sourceforge.net">meshlab.sourceforge.net</a>). We have learned how to load images into the software and change the structure of an input mesh. We read about various remeshing algorithms that we can build into our project 2 existing work and decided Hao Li's paper as our <a href="https://hal.inria.fr/inria-00071778/document">“North Star”</a> paper. This work combines the edge flip and split work we did in previous projects with new concepts of curvature and umbilics.</p>
+
+<h2 align="left">Sources Gathered</h2>
+<dl>
+    <dd><a href="https://hal.inria.fr/inria-00071778/document">https://hal.inria.fr/inria-00071778/document</a></dd>
+    <dd><a href="https://people.eecs.berkeley.edu/~jrs/meshpapers/BossenHeckbert.pdf">https://people.eecs.berkeley.edu/~jrs/meshpapers/BossenHeckbert.pdf</a></dd>
+    <dd><a href="http://www.hao-li.com/cs599-ss2015/slides/Lecture09.1.pdf">http://www.hao-li.com/cs599-ss2015/slides/Lecture09.1.pdf</a></dd>
+  </dl>
+<h2 align="left">Preliminary Results</h2>
+<p>The triangle intersection algorithm uses barycentric coordinates to see if our ray intersects a point within a given triangle using the parameter t within the ray. We ensured that the t-value of intersection that we calculated using the discriminant was within the range of the scene. If multiple t values satisfied the terms, we selected the earliest t-value where the ray intersected the object.
+</p>
+
+<div align="center">
+    <table style="width=100%">
+        <tr>
+          <td>
+            <img src="images/nanu_face.JPG" align="middle" width="400px"/>
+            <figcaption align="middle">Grandfather's Face</figcaption>
+          </td>
+          <td>
+            <img src="images/nanu_face_dotted.png" align="middle" width="400px"/>
+            <figcaption align="middle">Grandfather Dotted</figcaption>
+          </td>
+        </tr>
+        </table>
+    </div>
+    <p> </p>
+    <p>The dotted overlay on Grandfather forms the basis for the mesh overlay.</p>
+    <p> </p>
+ <div align="center">
+    <table style="width=100%">
+    <tr>
+      <td>
+        <img src="images/anuj_face.jpg" align="middle" width="400px"/>
+        <figcaption align="middle">Anuj's Face</figcaption>
+      </td>
+      <td>
+        <img src="images/anuj_face_meshed.png" align="middle" width="400px"/>
+        <figcaption align="middle">Anuj Face Meshed</figcaption>
+      </td>
+    </tr>
+    </table>
+</div>
+<p> </p>
+<div align="center">
+    <table style="width=100%">
+    <tr>
+      <td>
+        <img src="images/baby_face.jpg" align="middle" width="400px"/>
+        <figcaption align="middle">Baby's Face</figcaption>
+      </td>
+      <td>
+        <img src="images/baby_face_meshed.png" align="middle" width="400px"/>
+        <figcaption align="middle">Baby Face Meshed</figcaption>
+      </td>
+    </tr>
+    </table>
+</div>
+
+<p> This is the preliminary mesh overlay that we will be implementing. </p>
+
+<h2 align="left">Reflect on Our Progress</h2>
+<p>We spent a lot of time trying to figure out how to conduct research on our old project idea before settling on our new project topic. Additionally, most of us are more available to work on the project during RRR week so we intentionally backloaded the work. We spent a long time trying to understand the algorithm itself and are at a good launching off point for the upcoming couple of weeks.</p>
+
+<h2 align="left">Revised Work Plan</h2>
+<p>
+    <ul>
+      <li><span style="font-weight: bold">Apr 27, 2022</span> Estimate curvature tensor field, smooth it, draw out umbilics</li>
+      <li><span style="font-weight: bold">Apr 28, 2022</span> Estimate curvature tensor field, smooth it, draw out umbilics</li>
+      <li><span style="font-weight: bold">Apr 29, 2022</span> Create the 2 directional fields on the surface to draw out mesh geometry by using lines of curvatures. </li>
+      <li><span style="font-weight: bold">Apr 30, 2022</span> Create the 2 directional fields on the surface to draw out mesh geometry by using lines of curvatures and local density. Conduct point sampling near umbilic points.</li>
+      <li><span style="font-weight: bold">May 1, 2022</span> Create the 2 directional fields on the surface to draw out mesh geometry by using lines of curvatures and local density. Conduct point sampling near umbilic points.</li>
+      <li><span style="font-weight: bold">May 2, 2022</span> Create the 2 directional fields on the surface to draw out mesh geometry by using lines of curvatures and local density. Conduct point sampling near umbilic points.</li>
+      <li><span style="font-weight: bold">May 3, 2022</span> Write conforming-edge insertion code to complete the output mesh.</li>
+      <li><span style="font-weight: bold">May 4, 2022</span> Debug and prepare presentation</li>
+      <li><span style="font-weight: bold">May 5, 2022</span> Final Presentation Due</li>
+      <li><span style="font-weight: bold">May 6, 2022</span> Test runtime and debug algorithm</li>
+      <li><span style="font-weight: bold">May 7, 2022</span> Make slides for video</li>
+      <li><span style="font-weight: bold">May 8, 2022</span> Make video</li>
+      <li><span style="font-weight: bold">May 9, 2022</span> Make Web page</li>
+      <li><span style="font-weight: bold">May 10, 2022</span> Final Deliverables Due</li>
+    </ul>
+  </p>
+
+<h2 align="left">Progress Video and Slides</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8nNJipY6w5Y" title="Anisotropic Mesh Regularization" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+<br>
+
+<a href='https://docs.google.com/presentation/d/1KxzhebWyI50genZSxQLUzXkDEHjZH5twmWE0nVhHhk8/edit?usp=sharing'>Slides</a>
+
+</body>
+</html>
